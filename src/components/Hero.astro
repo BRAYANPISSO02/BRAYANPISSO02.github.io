@@ -5,60 +5,29 @@ import { SITE, HERO_SUBTITLE } from '../lib/site';
 
 <section id="home" class="hero" aria-label="Introduction">
   <div class="container">
-    <div class="hero-grid">
-      <div class="hero-intro">
-        <p class="hero-badge">
-          <span class="hero-badge-dot" aria-hidden="true"></span>
-          {SITE.location}
-        </p>
-        <h1 class="hero-name">{SITE.displayName}</h1>
-        <p class="hero-subtitle">{HERO_SUBTITLE}</p>
+    <div class="hero-intro">
+      <p class="hero-badge">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        {SITE.location}
+      </p>
+      <h1 class="hero-name">{SITE.displayName}</h1>
+      <p class="hero-subtitle">{HERO_SUBTITLE}</p>
 
-        <div class="hero-actions">
-          <a class="btn btn--primary" href="#about">
-            View profile
-            <Icon name="arrow-right" size={15} strokeWidth={2} />
-          </a>
-          <a class="btn btn--secondary" href={`mailto:${SITE.email}`}>Email me</a>
-          <a class="btn btn--subtle" href={SITE.github} target="_blank" rel="noopener noreferrer">
-            <Icon name="github" size={15} strokeWidth={1.8} />
-            GitHub
-          </a>
-          <a class="btn btn--subtle" href={SITE.linkedin} target="_blank" rel="noopener noreferrer">
-            <Icon name="linkedin" size={15} strokeWidth={1.8} />
-            LinkedIn
-          </a>
-        </div>
+      <div class="hero-actions">
+        <a class="btn btn--primary" href="#about">
+          View profile
+          <Icon name="arrow-right" size={15} strokeWidth={2} />
+        </a>
+        <a class="btn btn--secondary" href={`mailto:${SITE.email}`}>Email me</a>
+        <a class="btn btn--subtle" href={SITE.github} target="_blank" rel="noopener noreferrer">
+          <Icon name="github" size={15} strokeWidth={1.8} />
+          GitHub
+        </a>
+        <a class="btn btn--subtle" href={SITE.linkedin} target="_blank" rel="noopener noreferrer">
+          <Icon name="linkedin" size={15} strokeWidth={1.8} />
+          LinkedIn
+        </a>
       </div>
-
-      <aside class="facts-card" aria-label="Contact facts">
-        <dl class="facts">
-          <div class="fact">
-            <dt>Location</dt>
-            <dd>{SITE.location}</dd>
-          </div>
-          <div class="fact">
-            <dt>Email</dt>
-            <dd><a href={`mailto:${SITE.email}`}>{SITE.email}</a></dd>
-          </div>
-          <div class="fact">
-            <dt>Phone</dt>
-            <dd><a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></dd>
-          </div>
-          <div class="fact">
-            <dt>GitHub</dt>
-            <dd>
-              <a href={SITE.github} target="_blank" rel="noopener noreferrer">BRAYANPISSO02</a>
-            </dd>
-          </div>
-          <div class="fact">
-            <dt>LinkedIn</dt>
-            <dd>
-              <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">brayan-ricardo-pisso-ramirez</a>
-            </dd>
-          </div>
-        </dl>
-      </aside>
     </div>
   </div>
 </section>
