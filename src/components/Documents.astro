@@ -61,7 +61,7 @@ const privacyNote =
     : `${DOC_REQUEST_COPY.privacy} The message opens in your own email app and reaches me directly, with no service in between. ${DOC_REQUEST_COPY.decline}`;
 ---
 
-<div class="docs" data-reveal>
+<div class="docs">
   <h3 class="docs-heading">{DOC_REQUEST_COPY.heading}</h3>
   <p class="docs-intro">{DOC_REQUEST_COPY.intro}</p>
 
@@ -78,9 +78,9 @@ const privacyNote =
           </div>
 
           {mode === 'mailto' ? (
-            <a class="btn btn--outline-light doc-action" href={mailHref(doc.title)}>
-              <Icon name="arrow-right" size={16} strokeWidth={2} />
+            <a class="btn btn--secondary doc-action" href={mailHref(doc.title)}>
               {DOC_REQUEST_COPY.action}
+              <Icon name="arrow-right" size={15} strokeWidth={2} />
             </a>
           ) : (
             /*

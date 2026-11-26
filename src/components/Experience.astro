@@ -1,25 +1,43 @@
 ---
-import { EXPERIENCE } from '../lib/site';
+import Icon from './Icon.astro';
+import { EXPERIENCE, SITE } from '../lib/site';
 ---
 
 <section id="experience" class="section" aria-labelledby="experience-title">
   <div class="container">
-    <div class="section-head" data-reveal>
+    <div class="section-head">
       <p class="eyebrow">Experience</p>
-      <h2 id="experience-title" class="section-title">Professional trajectory</h2>
+      <h2 id="experience-title" class="section-title">Professional experience</h2>
     </div>
 
     <div class="entry-list">
       {
-        EXPERIENCE.map((item, i) => (
-          <article class="entry" data-reveal style={`--d: ${0.07 * i}s`}>
-            <p class="entry-period">{item.period}</p>
+        EXPERIENCE.map((item) => (
+          <article class="entry entry--card">
+            <div class="entry-aside">
+              <p class="entry-period">{item.period}</p>
+            </div>
             <div class="entry-body">
-              <h3 class="entry-title">{item.title}</h3>
-              <p class="entry-org">{item.org}</p>
+              <div class="entry-head">
+                <div>
+                  <h3 class="entry-title">{item.title}</h3>
+                  <p class="entry-org">{item.org}</p>
+                </div>
+                <!-- TODO: Replace with specific repo URL -->
+                <a
+                  class="entry-repo"
+                  href={item.repoUrl ?? SITE.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${item.title} on GitHub`}
+                >
+                  <Icon name="github" size={14} strokeWidth={1.8} />
+                  GitHub
+                </a>
+              </div>
               <p class="entry-desc">{item.description}</p>
-              <ul class="entry-tags" aria-label="Areas">
-                {item.tags.map((tag) => <li><span class="chip">{tag}</span></li>)}
+              <ul class="entry-meta">
+                {item.tags.map((tag) => <li class="chip chip--accent">{tag}</li>)}
               </ul>
             </div>
           </article>

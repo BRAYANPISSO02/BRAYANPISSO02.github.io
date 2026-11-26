@@ -1,13 +1,9 @@
 /**
- * Minimal progressive-enhancement script.
- * - Mobile nav toggle (aria-expanded aware, closes on link click / Escape,
- *   and returns focus to the toggle when dismissed with Escape)
- * - Reveal-on-scroll via IntersectionObserver with staggered delays
+ * Minimal progressive enhancement: one mobile-menu controller and one
+ * active-section indicator. No scroll reveals, no transforms, no extra class
+ * on <html> — the page is fully visible and styled without this module.
  */
 
-document.documentElement.classList.add('js');
-
-/* ---------- Mobile nav ---------- */
 const nav = document.querySelector<HTMLElement>('[data-nav]');
 const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
 const mobilePanel = document.querySelector<HTMLElement>('[data-nav-mobile]');
@@ -15,9 +11,9 @@ const mobilePanel = document.querySelector<HTMLElement>('[data-nav-mobile]');
 function setNavOpen(open: boolean): void {
   if (!nav || !toggle || !mobilePanel) return;
   mobilePanel.hidden = !open;
+  mobilePanel.setAttribute('aria-hidden', String(!open));
   toggle.setAttribute('aria-expanded', String(open));
   toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  nav.classList.toggle('is-open', open);
 }
 
 toggle?.addEventListener('click', () => {
@@ -27,14 +23,11 @@ toggle?.addEventListener('click', () => {
 
 mobilePanel?.addEventListener('click', (event) => {
   const target = event.target as HTMLElement | null;
-  if (target && target.closest('a')) setNavOpen(false);
+  if (target?.closest('a')) setNavOpen(false);
 });
 
-// Dismissing with Escape closes the panel the button owns, so focus has to go
-// back to that button — otherwise the next Tab starts from the top of the
-// document and a keyboard user is stranded (WCAG 2.4.3 focus order).
-// Only Escape does this: closing via a link click or a viewport resize must
-// not yank focus away from wherever the user actually is.
+// Escape returns focus to the button that owns the panel, so the next Tab does
+// not start again at the top of the document (WCAG 2.4.3 focus order).
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return;
   if (!toggle || toggle.getAttribute('aria-expanded') !== 'true') return;
@@ -43,28 +36,34 @@ document.addEventListener('keydown', (event) => {
 });
 
 window.addEventListener('resize', () => {
-  if (window.innerWidth > 880) setNavOpen(false);
+  if (window.innerWidth > 820) setNavOpen(false);
 });
 
-/* ---------- Reveal on scroll ---------- */
-const revealEls = document.querySelectorAll<HTMLElement>('[data-reveal]');
+/* ---------- Active section ---------- */
+const navLinks = Array.from(
+  document.querySelectorAll<HTMLAnchorElement>('nav[aria-label="Primary"] a[href^="#"]'),
+);
+const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
 
-if (revealEls.length > 0 && 'IntersectionObserver' in window) {
+function setCurrentSection(id: string): void {
+  for (const link of navLinks) {
+    if (link.getAttribute('href') === `#${id}`) {
+      link.setAttribute('aria-current', 'true');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  }
+}
+
+if ('IntersectionObserver' in window && sections.length > 0) {
   const observer = new IntersectionObserver(
     (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          el.classList.add('is-visible');
-          observer.unobserve(el);
-        }
-      }
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (visible[0]) setCurrentSection(visible[0].target.id);
     },
-    { threshold: 0.12, rootMargin: '0px 0px -48px 0px' },
+    { rootMargin: '-28% 0px -62% 0px' },
   );
-
-  revealEls.forEach((el) => observer.observe(el));
-} else {
-  // No observer support: never hide content
-  revealEls.forEach((el) => el.classList.add('is-visible'));
+  for (const section of sections) observer.observe(section);
 }

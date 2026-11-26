@@ -1,108 +1,63 @@
 ---
 import Icon from './Icon.astro';
-import { SITE, CV_URL, HERO_VALUE } from '../lib/site';
-import { CV_AVAILABLE } from '../lib/cv';
-
-// ML-first, four entries. `AWS` is dropped as the parent of four listed
-// services, and `Computer Vision` is a domain the value sentence already
-// carries, not a tool. PyTorch is the one accented chip because the CV names it
-// as the framework the featured models were built in.
-const heroTech = [
-  { label: 'PyTorch', featured: true },
-  { label: 'TensorFlow / Keras', featured: false },
-  { label: 'Amazon SageMaker', featured: false },
-  { label: 'Amazon S3', featured: false },
-] as const;
+import { SITE, HERO_SUBTITLE } from '../lib/site';
 ---
 
 <section id="home" class="hero" aria-label="Introduction">
   <div class="container">
     <div class="hero-grid">
-      <div>
-        <p class="eyebrow" data-reveal>{SITE.title} · {SITE.location}</p>
-        <h1 class="hero-name" data-reveal style="--d: .06s">{SITE.displayName}</h1>
-        <p class="hero-tagline" data-reveal style="--d: .12s">{SITE.targetRole}</p>
-        <p class="hero-value" data-reveal style="--d: .18s">{HERO_VALUE}</p>
+      <div class="hero-intro">
+        <p class="hero-badge">
+          <span class="hero-badge-dot" aria-hidden="true"></span>
+          {SITE.location}
+        </p>
+        <h1 class="hero-name">{SITE.displayName}</h1>
+        <p class="hero-subtitle">{HERO_SUBTITLE}</p>
 
-        <div class="hero-actions" data-reveal style="--d: .24s">
-          {
-            CV_AVAILABLE ? (
-              <a class="btn btn--primary" href={CV_URL} download>
-                <Icon name="download" size={16} strokeWidth={2.2} />
-                Download CV
-              </a>
-            ) : (
-              <a class="btn btn--primary" href={`mailto:${SITE.email}`}>
-                Email me
-              </a>
-            )
-          }
-          <a class="btn btn--secondary" href="#projects">
-            View Projects
-            <Icon name="arrow-right" size={16} strokeWidth={2.2} />
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="#about">
+            View profile
+            <Icon name="arrow-right" size={15} strokeWidth={2} />
           </a>
-          <a class="btn btn--ghost" href={SITE.linkedin} target="_blank" rel="noopener noreferrer">
-            <Icon name="linkedin" size={16} strokeWidth={2} />
-            LinkedIn
-          </a>
-          <a class="btn btn--ghost" href={SITE.github} target="_blank" rel="noopener noreferrer">
-            <Icon name="github" size={16} strokeWidth={2} />
+          <a class="btn btn--secondary" href={`mailto:${SITE.email}`}>Email me</a>
+          <a class="btn btn--subtle" href={SITE.github} target="_blank" rel="noopener noreferrer">
+            <Icon name="github" size={15} strokeWidth={1.8} />
             GitHub
           </a>
+          <a class="btn btn--subtle" href={SITE.linkedin} target="_blank" rel="noopener noreferrer">
+            <Icon name="linkedin" size={15} strokeWidth={1.8} />
+            LinkedIn
+          </a>
         </div>
-
-        <ul class="hero-tech" data-reveal style="--d: .3s" aria-label="Core technologies">
-          {
-            heroTech.map((tech) => (
-              <li>
-                {tech.featured ? (
-                  <span class="chip chip--accent">{tech.label}</span>
-                ) : (
-                  <span class="chip">{tech.label}</span>
-                )}
-              </li>
-            ))
-          }
-        </ul>
       </div>
 
-      <aside class="datasheet" data-reveal style="--d: .2s" aria-label="Profile summary">
-        <p class="datasheet-head">Profile — Engineering sheet</p>
-        <dl>
-          <div class="datasheet-row">
-            <dt>Name</dt>
-            <dd>{SITE.fullName}</dd>
-          </div>
-          <div class="datasheet-row">
+      <aside class="facts-card" aria-label="Contact facts">
+        <dl class="facts">
+          <div class="fact">
             <dt>Location</dt>
             <dd>{SITE.location}</dd>
           </div>
-          <div class="datasheet-row">
+          <div class="fact">
             <dt>Email</dt>
-            <dd>
-              <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-            </dd>
+            <dd><a href={`mailto:${SITE.email}`}>{SITE.email}</a></dd>
           </div>
-          <div class="datasheet-row">
+          <div class="fact">
+            <dt>Phone</dt>
+            <dd><a href={SITE.phoneHref}>{SITE.phoneDisplay}</a></dd>
+          </div>
+          <div class="fact">
             <dt>GitHub</dt>
             <dd>
               <a href={SITE.github} target="_blank" rel="noopener noreferrer">BRAYANPISSO02</a>
             </dd>
           </div>
-          <div class="datasheet-row">
+          <div class="fact">
             <dt>LinkedIn</dt>
             <dd>
-              <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">in/brayan-ricardo-pisso-ramirez</a>
+              <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">brayan-ricardo-pisso-ramirez</a>
             </dd>
           </div>
         </dl>
-        <div class="datasheet-stat">
-          <span class="datasheet-stat-value">≈ 2 h</span>
-          <span class="datasheet-stat-label">
-            manual design time reduced<br />
-            per image — featured project
-          </span>
-        </div>
       </aside>
     </div>
   </div>

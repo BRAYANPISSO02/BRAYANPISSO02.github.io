@@ -2,14 +2,14 @@
 import { REFERENCES, REFERENCES_NOTE } from '../lib/site';
 ---
 
-<section id="references" class="section" aria-labelledby="references-title" style="padding-block-start: 0">
+<section id="references" class="section" aria-labelledby="references-title">
   <div class="container">
-    <div class="section-head" data-reveal>
+    <div class="section-head">
       <p class="eyebrow">References</p>
-      <h2 id="references-title" class="section-title" style="margin-bottom: 0">Academic references</h2>
+      <h2 id="references-title" class="section-title">References</h2>
     </div>
 
-    <div class="refs-grid" data-reveal>
+    <div class="refs-grid">
       {
         REFERENCES.map((ref) => (
           <article class="ref">
@@ -21,6 +21,6 @@ import { REFERENCES, REFERENCES_NOTE } from '../lib/site';
       }
     </div>
 
-    <p class="refs-note" data-reveal>{REFERENCES_NOTE}</p>
+    <p class="refs-note">{REFERENCES_NOTE}</p>
   </div>
 </section>

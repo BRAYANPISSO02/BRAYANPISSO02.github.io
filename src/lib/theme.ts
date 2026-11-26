@@ -9,11 +9,10 @@
  * hexes in the component layer.
  *
  * INVARIANT: `light` equals `--bg` in `:root` and `dark` equals `--bg` inside
- * the `prefers-color-scheme: dark` block of `src/styles/global.css`. Both are
- * currently `#f4f5f6` and `#0e1116`. The `check:tokens` gate (T-16) should
- * assert that pairing mechanically instead of trusting this comment.
+ * the single `prefers-color-scheme: dark` block of `src/styles/global.css`.
+ * `scripts/check-tokens.mjs` asserts that pairing mechanically.
  */
 export const SCHEME_COLORS = {
-  light: '#f4f5f6',
-  dark: '#0e1116',
+  light: '#f9f8f5',
+  dark: '#101318',
 } as const;

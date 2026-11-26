@@ -1,46 +1,36 @@
 ---
-import { SOFT_SKILLS, STACK_PRIMARY, STACK_SECONDARY } from '../lib/site';
+import { LANGUAGE_SKILLS, SKILL_GROUPS, SOFT_SKILLS } from '../lib/site';
 ---
 
 <section id="skills" class="section" aria-labelledby="skills-title">
   <div class="container">
-    <div class="section-head" data-reveal>
-      <p class="eyebrow">Stack</p>
-      <h2 id="skills-title" class="section-title">Toolbox, by domain</h2>
+    <div class="section-head">
+      <p class="eyebrow">Skills</p>
+      <h2 id="skills-title" class="section-title">Technical toolkit</h2>
     </div>
-
-    <p class="section-sub" data-reveal>
-      Focused on process automation through artificial intelligence and real-world problem solving.
-    </p>
 
     <div class="skills-grid">
       {
-        STACK_PRIMARY.map((tier, i) => (
-          <article class="skill-cat" data-reveal style={`--d: ${0.05 * (i % 3)}s`}>
-            <header class="skill-cat-head">
-              <h3 class="skill-cat-name">{tier.label}</h3>
-              <span class="skill-cat-index">{String(i + 1).padStart(2, '0')}</span>
-            </header>
-            <ul class="skill-chips">
-              {tier.items.map((skill) => <li><span class="skill-chip">{skill}</span></li>)}
+        SKILL_GROUPS.map((group) => (
+          <article class="skill-group">
+            <h3 class="skill-label">{group.label}</h3>
+            <ul class="chip-list">
+              {group.items.map((item) => <li class="chip">{item}</li>)}
             </ul>
           </article>
         ))
       }
+
+      <article class="skill-group skill-group--languages">
+        <h3 class="skill-label">Languages</h3>
+        <p class="skill-items">{LANGUAGE_SKILLS}</p>
+      </article>
     </div>
 
-    <div class="stack-secondary" data-reveal>
-      <p class="eyebrow stack-secondary-eyebrow">Stack — secondary</p>
-      <p class="stack-secondary-note">{STACK_SECONDARY.note}</p>
-      <ul class="skill-chips">
-        {
-          STACK_SECONDARY.items.map((item) => (
-            <li><span class="skill-chip skill-chip--secondary">{item}</span></li>
-          ))
-        }
-      </ul>
-      <ul class="soft-strip">
-        {SOFT_SKILLS.map((skill) => <li>{skill}</li>)}
+    <div class="soft-skills">
+      <h3 class="skill-label">Soft skills</h3>
+      <ul class="chip-list">
+        {SOFT_SKILLS.map((item) => <li class="chip chip--soft">{item}</li>)}
       </ul>
     </div>
   </div>

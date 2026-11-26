@@ -343,77 +343,57 @@ const NOT_PROVENANCE = [
  */
 const EDITORIAL_ALLOWLIST = [
   {
-    id: 'hero-value-sentence',
+    id: 'hero-subtitle',
     reason:
-      'R-05 fixes this sentence and its clause order. It is a composition of six CV fragments, not a quote.',
+      'The subtitle is an exact composition of the CV degree line and its machine-learning focus. It is deliberately not a job title: the CV names no current role.',
     texts: [
-      'Builds computer vision models end-to-end — dataset construction, PyTorch training, SageMaker deployment — cutting ≈ 2 hours of manual design time per image for a microenterprise.',
+      'Electronic Engineer · M.S. Candidate in Industrial Automation (Machine Learning)',
     ],
   },
   {
-    id: 'target-role',
+    id: 'profile-composition',
     reason:
-      'R-06 requires this exact value. The CV lists a degree and no job title, so no substring of it can contain the string; it is positioning, not a claim.',
-    texts: ['Machine Learning Engineer'],
-  },
-  {
-    id: 'stack-tier-labels',
-    reason:
-      'R-13 fixes the three tier labels. `Programming` needs no entry: it is verbatim on the CV Programming languages line.',
-    texts: ['Machine Learning & Computer Vision', 'Cloud & MLOps'],
-  },
-  {
-    id: 'embedded-framing-sentence',
-    reason:
-      'R-16 requires one sentence tying the band to the telemetry project. Every clause is a fragment of the CV experience entry, recombined.',
+      'The protagonist summary recombines CV clauses: automation of workflows with AI/Electronics/IoT, PyTorch and SageMaker deployment, ThingsBoard telemetry, Mesh/Wi-Fi HaLow, and the two measured outcomes. No new claim or figure is introduced.',
     texts: [
-      'Long-Range Telemetry Project: long-distance data acquisition over Wi-Fi HaLow connectivity, with integration into the ThingsBoard IoT monitoring and management platform.',
+      'Electronic Engineer and M.S. candidate in Industrial Automation, with a focus on Machine Learning. I automate operational and technical workflows through systems that combine Artificial Intelligence, Electronics, and the Internet of Things (IoT): computer vision and deep learning in PyTorch, cloud deployment on Amazon SageMaker and Docker, telemetry with ThingsBoard remote monitoring, and wireless communication over Mesh and Wi-Fi HaLow networks. The same work spans hardware and data — a vision pipeline cut manual design time by approximately 2 hours per image for a laser cutting and engraving business, while a long-range acquisition system covered 8 electric energy meters using Modbus RTU/TCP and DLMS/COSEM over Wi-Fi HaLow.',
+    ],
+  },
+  {
+    id: 'en-dash-dates',
+    reason:
+      'The CV prints ranges with a hyphen; the site uses an en dash consistently in both education and experience. The digits and month names are the CV values.',
+    texts: [
+      'Feb 2026 – May 2026',
+      'Jun 2025 – Dec 2025',
+      'Aug 2024 – Dec 2024',
+      'Jan 2021 – Jul 2026',
+      'Jun 2026 – Present',
+      'Aug 2020 – Apr 2026',
+      'Feb 2019 – Nov 2019',
     ],
   },
   {
     id: 'pdf-text-reflowed',
     reason:
-      "The CV's own words, re-joined. `pdftotext -layout` interleaves the date column between the two halves of a heading, and breaks `multi-hop` across a line as `multi-` + `hop`; neither survives as a contiguous substring of the extract.",
+      '`pdftotext -layout` places the date column between the two halves of this research-group heading, so the contiguous name is not a substring of the extract.',
+    texts: ['Perception and Intelligent Control (PCI) Research Group'],
+  },
+  {
+    id: 'reference-copy',
+    reason:
+      'The reference note is the user-specified English wording of the CV note. Credentials and affiliation punctuation are normalised to the same English form for both referees.',
     texts: [
-      'Automatic Generation of Human Vector Representations Using Deep Learning',
-      'Percepción y Control Inteligente (PCI) Research Group',
-      'Professor, Department of Electrical, Electronic and Communications Engineering, Universidad Nacional de Colombia',
-      'Developed and implemented a pilot test at the Universidad Nacional de Colombia, La Nubia campus, of a long-distance data acquisition system for multiple electrical energy meters, using Modbus RTU/TCP and DLMS/COSEM protocols over Wi-Fi HaLow connectivity, with integration into the ThingsBoard IoT monitoring and management platform, designed to operate in self-organized multi-hop mesh network topologies.',
+      'Reference contacts available upon request',
+      'Ph.D. in Industrial Automation, M.Sc. in Engineering',
+      'Ph.D., M.Sc.',
+      'Professor, Department of Electrical, Electronic, and Communications Engineering, Universidad Nacional de Colombia, Manizales Campus',
     ],
   },
   {
-    id: 'featured-case-prose',
+    id: 'skill-cleanup',
     reason:
-      'R-09 needs a case the recruiter can scan. Each field is built from the CV project paragraph, recomposed into problem/solution/technology/impact. No figure is introduced: the only number is the CV two hours per image.',
-    texts: [
-      'Generating vector representations of people by hand is slow. For a microenterprise specializing in laser cutting and engraving, manual design work consumed approximately two hours per image — a direct cost on every order.',
-      'An automated computer vision pipeline that generates SVG vector representations of people directly from photographs, delivering a real impact in a production environment.',
-      'Deep learning models in PyTorch, including the Segment Anything Model (SAM) for interactive segmentation. A data engineering pipeline builds the dataset for supervised training of a vision model in Amazon SageMaker, focused on image-to-image translation tasks.',
-      'Approximately two hours of manual design time reduced per image for a real-world business.',
-    ],
-  },
-  {
-    id: 'grouped-service-labels',
-    reason:
-      'The CV groups these as `AWS (Lambda, SageMaker, Bedrock, S3)` and `CNC machinery operation: Router and Laser`; the chip composes the group name with one of its members.',
-    texts: ['Amazon S3', 'AWS Lambda', 'Amazon Bedrock', 'CNC Router', 'CNC Laser'],
-  },
-  {
-    id: 'chip-respacing-and-order',
-    reason:
-      'The CV writes `TensorFlow/Keras` and `English B2 (CEFR), Native Spanish`. The chip re-spaces or re-orders the same words and adds nothing.',
-    texts: ['TensorFlow / Keras', 'English — B2 (CEFR)', 'Spanish — Native'],
-  },
-  {
-    id: 'experience-tag-labels',
-    reason: 'The CV says `PCB routing`; the tag names the discipline that entry covers.',
-    texts: ['PCB Design'],
-  },
-  {
-    id: 'phone-display-format',
-    reason:
-      'The CV writes `(+57) 3152162946`. The display form drops the parentheses so the string matches the `tel:` href shape. The digits are the CV digits.',
-    texts: ['+57 3152162946'],
+      'The CV parenthetical is Spanish. `Git / GitHub` names the same two tools in English and adds no capability.',
+    texts: ['Git / GitHub'],
   },
   {
     id: 'document-request-copy',

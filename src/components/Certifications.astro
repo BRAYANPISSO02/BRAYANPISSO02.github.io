@@ -1,0 +1,27 @@
+---
+import { CERTIFICATIONS } from '../lib/site';
+---
+
+<section id="certifications" class="section" aria-labelledby="certifications-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Certifications and courses</p>
+      <h2 id="certifications-title" class="section-title">Certifications</h2>
+    </div>
+
+    <div class="cert-list">
+      {
+        CERTIFICATIONS.map((cert, i) => (
+          <article class="cert">
+            <span class="cert-index">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 class="cert-label">
+                {cert.label.includes(cert.provider) ? cert.label : `${cert.label} — ${cert.provider}`}
+              </h3>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

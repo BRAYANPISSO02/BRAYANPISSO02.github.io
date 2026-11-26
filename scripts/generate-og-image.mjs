@@ -55,13 +55,13 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
  * cannot drift apart silently.
  */
 const PALETTE = {
-  bg: '#0e1116', // --bg        (dark)
-  surface: '#161c25', // --surface   (dark)
-  ink: '#f2f4f7', // --panel-ink
-  ink2: '#c2cbd6', // --panel-ink-2
-  ink3: '#9aa5b3', // --ink-3     (dark)
-  accent: '#7ea0ff', // --accent    (dark) / --panel-accent
-  line: '#2a3340', // --line      (dark)
+  bg: '#101318', // --bg        (dark)
+  surface: '#171b22', // --surface   (dark)
+  ink: '#f3f4f6', // --ink       (dark)
+  ink2: '#b5bdc9', // --ink-2     (dark)
+  ink3: '#8f99a8', // --ink-3     (dark)
+  accent: '#7ab3e0', // --accent    (dark)
+  line: '#28303c', // quiet hairline, not a UI token
 };
 
 /**
@@ -74,38 +74,32 @@ const FONT = 'DejaVu Sans, Verdana, Arial, sans-serif';
 const OG = { width: 1200, height: 630 };
 const TOUCH = { width: 180, height: 180 };
 
-/** The brand mark, drawn once and reused by both assets. */
+/** A friendly rounded-square mark with a centered dot; matches the site brand mark. */
 const brandMark = (cx, cy, r) => `
-    <g fill="none" stroke="${PALETTE.accent}" stroke-width="${r / 9}" stroke-linecap="round">
-      <line x1="${cx}" y1="${cy - r * 1.6}" x2="${cx}" y2="${cy - r * 0.8}" />
-      <line x1="${cx}" y1="${cy + r * 0.8}" x2="${cx}" y2="${cy + r * 1.6}" />
-      <line x1="${cx - r * 1.6}" y1="${cy}" x2="${cx - r * 0.8}" y2="${cy}" />
-      <line x1="${cx + r * 0.8}" y1="${cy}" x2="${cx + r * 1.6}" y2="${cy}" />
-    </g>
-    <circle cx="${cx}" cy="${cy}" r="${r * 0.28}" fill="${PALETTE.accent}" />`;
+    <rect x="${cx - r}" y="${cy - r}" width="${r * 2}" height="${r * 2}" rx="${r * 0.56}" fill="none" stroke="${PALETTE.accent}" stroke-width="${r / 6}" />
+    <circle cx="${cx}" cy="${cy}" r="${r * 0.3}" fill="${PALETTE.accent}" />`;
 
 /**
  * 1200x630, the universal safe default: Facebook and Slack read it natively,
  * LinkedIn accepts it and centre-crops inside its 1.91:1 frame. Text stays
  * inside a 96px inset, clear of the 50px crop-safe zone LinkedIn documents.
  *
- * The title size is not a taste call. At 76px "Machine Learning Engineer"
- * measures 1127px in the resolved face and runs 23px off the canvas, where it
- * is silently clipped rather than obviously broken; 66px measures 979px inside
- * the 1008px column.
+ * The hero line is the CV's own title, not a role claim.
  */
 function ogSvg() {
   const left = 96;
   const column = OG.width - left * 2;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${OG.width}" height="${OG.height}" viewBox="0 0 ${OG.width} ${OG.height}">
   <rect width="${OG.width}" height="${OG.height}" fill="${PALETTE.bg}" />
-  <rect x="0" y="0" width="${OG.width}" height="6" fill="${PALETTE.accent}" />${brandMark(1032, 168, 44)}
-  <g font-family="${FONT}" fill="${PALETTE.ink}">
-    <text x="${left}" y="212" font-size="30" font-weight="700" letter-spacing="5.5" fill="${PALETTE.accent}">BRAYAN PISSO</text>
-    <text x="${left}" y="308" font-size="66" font-weight="700" letter-spacing="-1.5">Machine Learning Engineer</text>
-    <line x1="${left}" y1="356" x2="${left + column}" y2="356" stroke="${PALETTE.line}" stroke-width="2" />
-    <text x="${left}" y="428" font-size="34" fill="${PALETTE.ink2}">Computer Vision · PyTorch · Amazon SageMaker</text>
-    <text x="${left}" y="536" font-size="28" fill="${PALETTE.ink3}">Manizales, Colombia</text>
+  <rect x="56" y="48" width="${OG.width - 112}" height="${OG.height - 96}" rx="28" fill="${PALETTE.surface}" stroke="${PALETTE.line}" stroke-width="1.5" />
+  ${brandMark(1040, 128, 18)}
+  <g fill="${PALETTE.ink}">
+    <text x="${left}" y="142" font-family="${FONT}" font-size="24" font-weight="700" letter-spacing="4" fill="${PALETTE.accent}">BRAYAN PISSO</text>
+    <text x="${left}" y="292" font-family="${FONT}" font-size="70" font-weight="700" letter-spacing="-2">Electronic Engineer</text>
+    <text x="${left}" y="356" font-family="${FONT}" font-size="30" fill="${PALETTE.ink2}">M.S. Candidate in Industrial Automation</text>
+    <line x1="${left}" y1="414" x2="${left + column}" y2="414" stroke="${PALETTE.line}" stroke-width="1.5" />
+    <text x="${left}" y="476" font-family="${FONT}" font-size="26" fill="${PALETTE.ink2}">Computer Vision · PyTorch · Amazon SageMaker · IoT</text>
+    <text x="${left}" y="534" font-family="${FONT}" font-size="23" fill="${PALETTE.ink3}">Manizales, Colombia</text>
   </g>
 </svg>
 `;
@@ -117,7 +111,6 @@ function touchIconSvg() {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${TOUCH.width}" height="${TOUCH.height}" viewBox="0 0 ${TOUCH.width} ${TOUCH.height}">
   <rect width="${TOUCH.width}" height="${TOUCH.height}" rx="${TOUCH.width * 0.22}" fill="${PALETTE.bg}" />
   <g transform="scale(${s})">${brandMark(32, 32, 15)}
-    <circle cx="32" cy="32" r="15" fill="none" stroke="${PALETTE.ink}" stroke-opacity="0.16" stroke-width="1.5" />
   </g>
 </svg>
 `;

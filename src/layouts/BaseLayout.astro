@@ -41,11 +41,11 @@ const ogImage = new URL('og.jpg', pageUrl);
  * instead of re-typing literals means the structured data cannot drift away
  * from the visible name.
  *
- * The Spanish two-surname convention (`Pisso Ramírez`) is the reason the
- * family part is a phrase while `profile:last_name` is a single token.
+ * The names are kept to what the current CV actually prints, so the structured
+ * data cannot claim a detail the authoritative document does not carry.
  */
-const givenName = 'Brayan Ricardo';
-const familyName = 'Pisso Ramírez';
+const givenName = 'Brayan';
+const familyName = 'Pisso';
 const firstName = givenName.split(' ')[0];
 
 /** Last path segment of the GitHub URL, so it cannot drift from the link. */
@@ -68,7 +68,7 @@ const jsonLd = {
   jobTitle: SITE.title,
   /** schema.org `Person.email` takes a bare address, never a `mailto:` URI. */
   email: SITE.email,
-  telephone: SITE.phoneDisplay.replace(/\s/g, ''),
+  telephone: SITE.phoneDisplay.replace(/[^\d+]/g, ''),
   url: pageUrl.toString(),
   knowsLanguage: ['es', 'en'],
   address: {
@@ -135,16 +135,12 @@ const jsonLd = {
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Brayan Pisso — Machine Learning Engineer. Computer vision models built with PyTorch and Amazon SageMaker, based in Manizales, Colombia."
+      content="Brayan Pisso — Electronic Engineer and M.S. candidate in Industrial Automation, working across computer vision, cloud deployment and IoT telemetry."
     />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-
-    <script is:inline>
-      document.documentElement.classList.add('js');
-    </script>
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   </head>

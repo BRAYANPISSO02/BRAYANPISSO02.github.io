@@ -1,11 +1,12 @@
 # PageBrayanPissoCV
 
-Professional single-page portfolio / CV site for Brayan Pisso — Electronic Engineer specialized in
-Machine Learning and Computer Vision. Static, dependency-light Astro site designed for GitHub Pages.
+Professional single-page portfolio / CV site for Brayan Pisso — Electronic Engineer and M.S.
+Candidate in Industrial Automation (Machine Learning). Static, dependency-light Astro site designed
+for GitHub Pages.
 
 **Live development:** `npm run dev` — then open the printed local URL. Builds with zero runtime
 frameworks: hand-written CSS tokens, inline SVG icons, and one small vanilla-TypeScript module for
-the mobile menu and reveal-on-scroll.
+the mobile menu and active-section indicator.
 
 ## Quick path
 
@@ -41,14 +42,14 @@ Pull requests run a non-deploying `check` job with the same chain. It is advisor
 | Path | Purpose |
 |------|---------|
 | `src/pages/index.astro` | Single page, assembles all sections |
-| `src/components/` | One component per section (Nav, Hero, FeaturedProject, Experience, Education, Skills, Courses, References, Documents, Contact, Footer, Icon) |
+| `src/components/` | One component per section (Nav, Hero, About, Skills, Experience, Education, Certifications, References, Documents, Contact, Footer, Icon) |
 | `src/layouts/BaseLayout.astro` | HTML shell: SEO, Open Graph, JSON-LD Person schema, skip link |
 | `src/styles/global.css` | Design tokens (CSS custom properties) and all styles |
-| `src/scripts/main.ts` | Vanilla TS: nav toggle + IntersectionObserver reveal, respects `prefers-reduced-motion` |
+| `src/scripts/main.ts` | Vanilla TS: mobile nav toggle and IntersectionObserver active-section indicator |
 | `src/lib/site.ts` | Single source of truth for all CV facts (title, links, experience, skills, …) |
 | `public/favicon.svg` | Inline SVG favicon |
 | `public/Brayan_Ricardo_Pisso_Ramirez_CV.pdf` | Where the redacted, publishable CV belongs. Absent today, so the site renders no download CTA. |
-| `scripts/fixtures/cv.txt` | Committed redacted text extract of the CV — the reference the provenance gate checks every shipped string against |
+| `scripts/fixtures/cv.txt` | Committed `pdftotext -layout` extract of the current CV, including both form feeds — the reference the provenance gate checks every shipped string against |
 | `scripts/check-*.mjs` | The build gates: national ID / unapproved PDF (privacy), token layer shape (tokens), byte budgets (budget) |
 
 ## Content policy
@@ -58,16 +59,16 @@ credentials. `scripts/fixtures/cv.txt` is the committed, redacted text extract t
 `npm run check:privacy` (assertion C) matches every shipped string against, so an untraceable claim
 fails the build instead of shipping.
 
-The PDF at the repo root (`Brayan_Ricardo_Pisso_Ramirez_CV.pdf`) is a **local, untracked reference
-only**. It carries a national ID number and a handwritten signature, and `.gitignore` excludes it —
-it never reaches the repository, the build, or the published site. `public/*.pdf` is the only
-location where a publishable CV may live, and anything placed there must be redacted first: the
-`check:privacy` gate rejects any PDF in `dist/` whose sha256 does not match the approved `public/`
-copy.
+The authoritative PDF is a **local reference outside this repository**. It is never copied into
+`public/` or committed: the committed text extract is enough for the provenance gate, and no raw
+document is published by default. `public/*.pdf` is the only location where a publishable CV may
+live, and anything placed there must be redacted first: the `check:privacy` gate rejects any PDF in
+`dist/` whose sha256 does not match the approved `public/` copy. The current extract carries no
+national ID; the redaction policy remains in force so a future document cannot reintroduce one.
 
 ## Accessibility & performance
 
 - Semantic landmarks, skip link, aria labels, visible focus states.
-- Scroll animations are pure progressive enhancement: without JS everything is visible; with
-  `prefers-reduced-motion: reduce` all motion is disabled.
+- Progressive enhancement only: without JS every section is immediately visible; with
+  `prefers-reduced-motion: reduce` smooth scrolling and transitions are disabled.
 - No web fonts, no frameworks, near-zero client JS.
