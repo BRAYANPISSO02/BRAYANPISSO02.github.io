@@ -37,7 +37,7 @@ export const HERO_SUBTITLE =
  */
 export const PROFILE = {
   summary:
-    'Electronic Engineer and M.S. candidate in Industrial Automation, with a focus on Machine Learning. I automate operational and technical workflows through systems that combine Artificial Intelligence, Electronics, and the Internet of Things (IoT): computer vision and deep learning in PyTorch, cloud deployment on Amazon SageMaker and Docker, telemetry with ThingsBoard remote monitoring, and wireless communication over Mesh and Wi-Fi HaLow networks. The same work spans hardware and data — a vision pipeline cut manual design time by approximately 2 hours per image for a laser cutting and engraving business, while a long-range acquisition system covered 8 electric energy meters using Modbus RTU/TCP and DLMS/COSEM over Wi-Fi HaLow.',
+    'Electronic Engineer and M.S. Candidate in Industrial Automation with a focus on Machine Learning. Specialized in automating operational and technical workflows through systems that combine Artificial Intelligence, Electronics, and the Internet of Things (IoT). Experienced in data preprocessing, model training, and cloud deployment (Python, PyTorch, AWS SageMaker, Docker), as well as telemetry systems, remote monitoring (ThingsBoard), and wireless communications over Mesh and Wi-Fi HaLow networks.',
   focus: [
     'Computer Vision',
     'Deep Learning',

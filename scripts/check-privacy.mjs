@@ -351,14 +351,6 @@ const EDITORIAL_ALLOWLIST = [
     ],
   },
   {
-    id: 'profile-composition',
-    reason:
-      'The protagonist summary recombines CV clauses: automation of workflows with AI/Electronics/IoT, PyTorch and SageMaker deployment, ThingsBoard telemetry, Mesh/Wi-Fi HaLow, and the two measured outcomes. No new claim or figure is introduced.',
-    texts: [
-      'Electronic Engineer and M.S. candidate in Industrial Automation, with a focus on Machine Learning. I automate operational and technical workflows through systems that combine Artificial Intelligence, Electronics, and the Internet of Things (IoT): computer vision and deep learning in PyTorch, cloud deployment on Amazon SageMaker and Docker, telemetry with ThingsBoard remote monitoring, and wireless communication over Mesh and Wi-Fi HaLow networks. The same work spans hardware and data — a vision pipeline cut manual design time by approximately 2 hours per image for a laser cutting and engraving business, while a long-range acquisition system covered 8 electric energy meters using Modbus RTU/TCP and DLMS/COSEM over Wi-Fi HaLow.',
-    ],
-  },
-  {
     id: 'en-dash-dates',
     reason:
       'The CV prints ranges with a hyphen; the site uses an en dash consistently in both education and experience. The digits and month names are the CV values.',
