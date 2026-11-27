@@ -1,4 +1,4 @@
-# PageBrayanPissoCV
+# BRAYANPISSO02.github.io
 
 Professional single-page portfolio / CV site for Brayan Pisso — Electronic Engineer and M.S.
 Candidate in Industrial Automation (Machine Learning). Static, dependency-light Astro site designed
@@ -22,16 +22,16 @@ npm run preview   # serve the production build locally
 
 The site is pre-configured (`.github/workflows/deploy.yml`) to deploy on every push to `main`:
 
-1. Push the repository to GitHub (`BRAYANPISSO02/PageBrayanPissoCV`).
-2. In the repo: **Settings → Pages → Source: GitHub Actions**.
-3. Push to `main` (or run the *Deploy to GitHub Pages* workflow manually) — the workflow type-checks,
-   builds, runs the privacy, token and budget gates, and publishes `dist/`.
+1. Push the repository to GitHub (`BRAYANPISSO02/BRAYANPISSO02.github.io`).
+2. In the repo: **Settings → Pages → Source: Deploy from a branch** (`gh-pages` / `/ (root)`).
+3. Run `npm run publish` — the script type-checks, builds, runs the privacy, token and budget gates,
+   and publishes `dist/` to `gh-pages`.
 
-The site will be live at `https://BRAYANPISSO02.github.io/PageBrayanPissoCV/`.
+The site will be live at `https://brayanpisso02.github.io/`.
 
-> **Why the base path?** `astro.config.mjs` sets `site: 'https://BRAYANPISSO02.github.io'` and
-> `base: '/PageBrayanPissoCV/'`. Every internal link and asset reference in the code uses
-> `import.meta.env.BASE_URL` so nothing breaks when served from a subdirectory. Any file placed in
+> **Base path:** `astro.config.mjs` sets `site: 'https://brayanpisso02.github.io'` and
+> `base: '/'`. Every internal link and asset reference in the code uses
+> `import.meta.env.BASE_URL` so assets resolve cleanly at the domain root. Any file placed in
 > `public/` is copied to `dist/` and referenced through that same base-aware prefix.
 
 Pull requests run a non-deploying `check` job with the same chain. It is advisory until

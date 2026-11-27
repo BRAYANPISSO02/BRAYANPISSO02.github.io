@@ -79,7 +79,7 @@ function stageBranch() {
 
     run('git', ['add', '--all'], { cwd: staging })
     run('git', ['commit', '--quiet', '-m', 'build: publish site to gh-pages'], { cwd: staging })
-    run('git', ['remote', 'add', REMOTE, 'https://github.com/BRAYANPISSO02/PageBrayanPissoCV.git'], {
+    run('git', ['remote', 'add', REMOTE, 'https://github.com/BRAYANPISSO02/BRAYANPISSO02.github.io.git'], {
       cwd: staging,
     })
   } catch (error) {
@@ -113,5 +113,5 @@ try {
 verifyDist()
 stageBranch()
 
-console.log('\nPublished: https://brayanpisso02.github.io/PageBrayanPissoCV/')
+console.log('\nPublished: https://brayanpisso02.github.io/')
 console.log('GitHub builds it in about a minute. No Actions minutes were spent.')
